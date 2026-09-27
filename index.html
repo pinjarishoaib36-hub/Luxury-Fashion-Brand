@@ -1,110 +1,1013 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="NOIRÉ — premium fashion collection.">
-<title>NOIRÉ — Premium Fashion</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="preload" as="image" href="images/hero.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VELORA — Watches</title>
+  <meta name="description" content="VELORA — Precision timepieces, refined for those who value timeless design.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #080808;
+      color: #f4f1e9;
+      font-family: Georgia, "Times New Roman", serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================== */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 76px;
+      padding: 0 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+
+      background: rgba(8, 8, 8, 0.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      font-size: 25px;
+      letter-spacing: 7px;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      opacity: .72;
+      transition: .3s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 110px 6% 70px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      background: rgba(190, 150, 70, .09);
+      filter: blur(100px);
+      animation: glow 7s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        transform: scale(.85);
+        opacity: .4;
+      }
+      to {
+        transform: scale(1.15);
+        opacity: .8;
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #b9a06a;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-size: clamp(58px, 11vw, 150px);
+      line-height: .86;
+      font-weight: 400;
+      letter-spacing: -4px;
+      margin-bottom: 30px;
+    }
+
+    .hero p {
+      max-width: 560px;
+      margin: auto;
+      font-family: Arial, sans-serif;
+      color: #aaa;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .hero-watch {
+      width: min(420px, 78vw);
+      margin: 50px auto 0;
+      animation: floatingWatch 5s ease-in-out infinite;
+      filter: drop-shadow(0 35px 45px rgba(0,0,0,.8));
+    }
+
+    @keyframes floatingWatch {
+      0%,100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-16px) rotate(1deg);
+      }
+    }
+
+    .hero-watch img {
+      border-radius: 50%;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+    }
+
+    /* =========================
+       GENERAL
+    ========================== */
+
+    section {
+      padding: 120px 7%;
+    }
+
+    .section-label {
+      font-family: Arial, sans-serif;
+      color: #b9a06a;
+      letter-spacing: 4px;
+      font-size: 10px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: clamp(40px, 6vw, 78px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 25px;
+    }
+
+    .section-text {
+      max-width: 600px;
+      font-family: Arial, sans-serif;
+      color: #999;
+      line-height: 1.9;
+      font-size: 14px;
+    }
+
+    /* =========================
+       COLLECTION
+    ========================== */
+
+    .collection {
+      background: #0c0c0c;
+    }
+
+    .collection-header {
+      margin-bottom: 70px;
+    }
+
+    .watch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .watch-card {
+      position: relative;
+      overflow: hidden;
+      background: #111;
+      border: 1px solid rgba(255,255,255,.07);
+      transition: transform .5s ease, border-color .5s ease;
+    }
+
+    .watch-card:hover {
+      transform: translateY(-12px);
+      border-color: rgba(185,160,106,.45);
+    }
+
+    .watch-image {
+      aspect-ratio: 1 / 1.15;
+      overflow: hidden;
+      background: #151515;
+    }
+
+    .watch-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s ease;
+    }
+
+    .watch-card:hover .watch-image img {
+      transform: scale(1.07);
+    }
+
+    .watch-info {
+      padding: 28px;
+    }
+
+    .watch-number {
+      font-family: Arial, sans-serif;
+      color: #b9a06a;
+      font-size: 10px;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+
+    .watch-name {
+      font-size: 27px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .watch-desc {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #888;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .watch-price {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #d5c39c;
+    }
+
+    /* =========================
+       STORY
+    ========================== */
+
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .story-image {
+      overflow: hidden;
+      min-height: 520px;
+    }
+
+    .story-image img {
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+
+    .story-image:hover img {
+      transform: scale(1.04);
+    }
+
+    .story-copy {
+      max-width: 620px;
+    }
+
+    /* =========================
+       DETAILS
+    ========================== */
+
+    .details {
+      background: #0d0d0d;
+      text-align: center;
+    }
+
+    .details-intro {
+      max-width: 650px;
+      margin: 0 auto 70px;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(255,255,255,.1);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .spec {
+      padding: 35px 20px;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+
+    .spec:last-child {
+      border-right: none;
+    }
+
+    .spec strong {
+      display: block;
+      font-size: 26px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .spec span {
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #777;
+    }
+
+    /* =========================
+       MOVEMENT
+    ========================== */
+
+    .movement {
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .movement::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      right: -150px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      border: 1px solid rgba(185,160,106,.16);
+      box-shadow:
+        0 0 0 50px rgba(185,160,106,.025),
+        0 0 0 100px rgba(185,160,106,.015);
+    }
+
+    .movement-content {
+      position: relative;
+      z-index: 2;
+      max-width: 650px;
+    }
+
+    .movement-number {
+      font-size: 120px;
+      color: rgba(185,160,106,.08);
+      position: absolute;
+      left: -20px;
+      top: -90px;
+    }
+
+    /* =========================
+       JOURNAL
+    ========================== */
+
+    .journal {
+      background: #0a0a0a;
+    }
+
+    .journal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 60px;
+    }
+
+    .journal-card {
+      position: relative;
+      min-height: 430px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .journal-card img {
+      height: 100%;
+      min-height: 430px;
+      object-fit: cover;
+      opacity: .65;
+      transition: transform .8s ease, opacity .5s ease;
+    }
+
+    .journal-card:hover img {
+      transform: scale(1.06);
+      opacity: .8;
+    }
+
+    .journal-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 35px;
+      background: linear-gradient(transparent, rgba(0,0,0,.9));
+    }
+
+    .journal-overlay small {
+      font-family: Arial, sans-serif;
+      color: #b9a06a;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .journal-overlay h3 {
+      font-size: 31px;
+      font-weight: 400;
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact {
+      text-align: center;
+      padding: 150px 7%;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .contact h2 {
+      font-size: clamp(45px, 7vw, 90px);
+      font-weight: 400;
+      margin-bottom: 25px;
+    }
+
+    .contact p {
+      font-family: Arial, sans-serif;
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 35px;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      padding: 16px 32px;
+      border: 1px solid #b9a06a;
+      color: #d5c39c;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: .3s ease;
+    }
+
+    .contact-btn:hover {
+      background: #b9a06a;
+      color: #080808;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      padding: 30px 7%;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,.07);
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #666;
+    }
+
+    /* =========================
+       SCROLL ANIMATION
+    ========================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(45px);
+      transition: opacity .9s ease, transform .9s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 800px) {
+
+      nav {
+        height: 68px;
+        padding: 0 5%;
+      }
+
+      .logo {
+        font-size: 19px;
+        letter-spacing: 5px;
+      }
+
+      .nav-links {
+        gap: 13px;
+        font-size: 8px;
+      }
+
+      section {
+        padding: 85px 5%;
+      }
+
+      .hero {
+        padding-top: 100px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-watch {
+        width: 78vw;
+      }
+
+      .watch-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .story-image,
+      .story-image img {
+        min-height: 400px;
+      }
+
+      .spec-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .spec {
+        border-bottom: 1px solid rgba(255,255,255,.1);
+      }
+
+      .spec:nth-child(2) {
+        border-right: none;
+      }
+
+      .journal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .movement::after {
+        width: 300px;
+        height: 300px;
+        right: -170px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .nav-links a:nth-child(2),
+      .nav-links a:nth-child(3) {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 58px;
+      }
+
+      .section-title {
+        font-size: 43px;
+      }
+
+      .watch-info {
+        padding: 23px;
+      }
+
+      .journal-card,
+      .journal-card img {
+        min-height: 350px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<canvas id="particles"></canvas>
-<div class="aurora aurora-one"></div>
-<div class="aurora aurora-two"></div>
-<div class="grain"></div>
 
-<header class="nav">
-  <a class="brand" href="#home">NOIRÉ<span>.</span></a>
-  <nav id="navLinks">
-    <a href="#home">Home</a>
-    <a href="#collection">Collection</a>
-    <a href="#story">Our Story</a>
-    <a href="#contact">Contact</a>
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#home" class="logo">VELORA</a>
+
+    <div class="nav-links">
+      <a href="#collection">Collection</a>
+      <a href="#story">Philosophy</a>
+      <a href="#journal">Journal</a>
+      <a href="#contact">Contact</a>
+    </div>
   </nav>
-  <div class="nav-actions">
-    <button class="icon-btn" aria-label="Search" id="searchBtn">⌕</button>
-    <button class="cart-btn" id="cartBtn">Bag <span id="cartCount">0</span></button>
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
-  </div>
-</header>
 
-<main>
-<section class="hero" id="home">
-  <div class="hero-copy">
-    <p class="eyebrow">AUTUMN / WINTER 2026</p>
-    <h1>Wear the<br><em>unforgettable.</em></h1>
-    <p class="hero-text">A modern expression of luxury, cut with confidence and designed for the moments that matter.</p>
-    <div class="hero-buttons">
-      <a class="btn btn-primary" href="#collection">Explore collection <span>↗</span></a>
-      <a class="text-link" href="#story">Discover NOIRÉ</a>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">Independent Horology · Est. 2026</div>
+
+      <h1>TIME,<br>REFINED.</h1>
+
+      <p>
+        VELORA creates contemporary mechanical timepieces
+        shaped by precision, restraint and timeless design.
+      </p>
+
+      <div class="hero-watch">
+        <img
+          src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=1000&q=85"
+          alt="Luxury VELORA watch"
+          loading="eager"
+        >
+      </div>
+
     </div>
-  </div>
-  <div class="hero-visual">
-    <div class="halo"></div>
-    <div class="model-card">
-      <div class="model-overlay"></div>
-      <div class="model-copy"><span>01</span><strong>THE<br>NOIRÉ<br>EDIT</strong></div>
+
+  </header>
+
+
+  <!-- COLLECTION -->
+  <section class="collection" id="collection">
+
+    <div class="collection-header reveal">
+      <div class="section-label">The Collection</div>
+
+      <h2 class="section-title">
+        Three expressions.<br>
+        One philosophy.
+      </h2>
+
+      <p class="section-text">
+        Each VELORA timepiece is designed around the belief that
+        luxury is found in proportion, material and precision.
+      </p>
     </div>
-  </div>
-  <div class="scroll-cue"><span></span> SCROLL TO EXPLORE</div>
-</section>
 
-<section class="ticker"><div>NOIRÉ — MODERN LUXURY — NOIRÉ — MODERN LUXURY — NOIRÉ — MODERN LUXURY —</div></section>
 
-<section class="collection section" id="collection">
-  <div class="section-head">
-    <div><p class="eyebrow">CURATED COLLECTION</p><h2>Designed to <em>stand out.</em></h2></div>
-    <p class="section-note">Four signatures. One unmistakable point of view.</p>
-  </div>
-  <div class="products">
-    <article class="product">
-      <div class="product-image p1"><span>NEW</span><button class="quick" data-product="Noir Structured Blazer">Quick add</button></div>
-      <div class="product-info"><div><h3>Noir Structured Blazer</h3><p>Tailored wool · Black</p></div><strong>$289</strong></div>
-    </article>
-    <article class="product">
-      <div class="product-image p2"><span>01 / 04</span><button class="quick" data-product="Satin Evening Dress">Quick add</button></div>
-      <div class="product-info"><div><h3>Satin Evening Dress</h3><p>Liquid satin · Onyx</p></div><strong>$249</strong></div>
-    </article>
-    <article class="product">
-      <div class="product-image p3"><span>EDITOR'S PICK</span><button class="quick" data-product="Architect Knit">Quick add</button></div>
-      <div class="product-info"><div><h3>Architect Knit</h3><p>Merino blend · Ivory</p></div><strong>$159</strong></div>
-    </article>
-    <article class="product">
-      <div class="product-image p4"><span>LIMITED</span><button class="quick" data-product="Noir Leather Tote">Quick add</button></div>
-      <div class="product-info"><div><h3>Noir Leather Tote</h3><p>Full-grain leather · Black</p></div><strong>$319</strong></div>
-    </article>
-  </div>
-</section>
+    <div class="watch-grid">
 
-<section class="manifesto" id="story">
-  <div class="manifesto-number">02</div>
-  <div><p class="eyebrow">THE NOIRÉ PHILOSOPHY</p><h2>Less noise.<br><em>More presence.</em></h2></div>
-  <p>We create pieces that do not ask for attention. They command it. Every silhouette is refined, every texture intentional, every detail built to last beyond a season.</p>
-</section>
+      <!-- WATCH 01 -->
+      <article class="watch-card reveal">
 
-<section class="feature section">
-  <div class="feature-image"></div>
-  <div class="feature-copy"><p class="eyebrow">THE NIGHT EDIT</p><h2>After dark,<br><em>anything goes.</em></h2><p>Statement layers, sculpted silhouettes and deep midnight tones for evenings that deserve more than ordinary.</p><a class="btn btn-primary" href="#collection">Shop the edit <span>↗</span></a></div>
-</section>
+        <div class="watch-image">
+          <img
+            src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=85"
+            alt="VELORA V-01 luxury watch"
+            loading="lazy"
+          >
+        </div>
 
-<section class="newsletter" id="contact">
-  <p class="eyebrow">PRIVATE ACCESS</p>
-  <h2>Enter the world of <em>NOIRÉ.</em></h2>
-  <p>New drops, private previews and editorial stories — delivered occasionally.</p>
-  <form id="newsletterForm"><input type="email" placeholder="Your email address" required><button type="submit">Join <span>↗</span></button></form>
-  <small id="formMessage"></small>
-</section>
-</main>
+        <div class="watch-info">
+          <div class="watch-number">V-01</div>
 
-<footer><div class="brand">NOIRÉ<span>.</span></div><p>© 2026 NOIRÉ Studio. All rights reserved.</p><div><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">Terms</a></div></footer>
+          <h3 class="watch-name">The Meridian</h3>
 
-<div class="toast" id="toast">Added to bag</div>
-<div class="search-modal" id="searchModal"><button id="closeSearch">×</button><div><p class="eyebrow">SEARCH NOIRÉ</p><input id="searchInput" placeholder="Search collection..." autofocus></div></div>
+          <p class="watch-desc">
+            A restrained automatic timepiece defined by
+            balanced proportions and clean geometry.
+          </p>
 
-<script src="script.js"></script>
-</body>
-</html>
+          <div class="watch-price">₹1,85,000</div>
+        </div>
+
+      </article>
+
+
+      <!-- WATCH 02 -->
+      <article class="watch-card reveal">
+
+        <div class="watch-image">
+          <img
+            src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=900&q=85"
+            alt="VELORA V-02 luxury watch"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="watch-info">
+          <div class="watch-number">V-02</div>
+
+          <h3 class="watch-name">The Nocturne</h3>
+
+          <p class="watch-desc">
+            Darkened steel, luminous details and a character
+            designed for the hours after sunset.
+          </p>
+
+          <div class="watch-price">₹2,25,000</div>
+        </div>
+
+      </article>
+
+
+      <!-- WATCH 03 -->
+      <article class="watch-card reveal">
+
+        <div class="watch-image">
+          <img
+            src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=900&q=85"
+            alt="VELORA V-03 luxury watch"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="watch-info">
+          <div class="watch-number">V-03</div>
+
+          <h3 class="watch-name">The Atelier</h3>
+
+          <p class="watch-desc">
+            A refined expression of traditional watchmaking
+            with contemporary architectural details.
+          </p>
+
+          <div class="watch-price">₹2,75,000</div>
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- PHILOSOPHY -->
+  <section id="story">
+
+    <div class="story">
+
+      <div class="story-image reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=1200&q=85"
+          alt="Luxury mechanical watch detail"
+          loading="lazy"
+        >
+
+      </div>
+
+
+      <div class="story-copy reveal">
+
+        <div class="section-label">Our Philosophy</div>
+
+        <h2 class="section-title">
+          Made slowly.<br>
+          Designed to last.
+        </h2>
+
+        <p class="section-text">
+          VELORA exists at the intersection of traditional
+          horology and modern design. Every component is
+          considered for its function, proportion and tactile
+          character.
+          <br><br>
+          We believe a watch should become part of your story,
+          not simply tell the time.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DETAILS -->
+  <section class="details">
+
+    <div class="details-intro reveal">
+
+      <div class="section-label">Precision</div>
+
+      <h2 class="section-title">Every detail matters.</h2>
+
+      <p class="section-text" style="margin:auto;">
+        From the movement to the final finishing,
+        every VELORA component is designed around
+        long-term performance and visual harmony.
+      </p>
+
+    </div>
+
+
+    <div class="spec-grid reveal">
+
+      <div class="spec">
+        <strong>40mm</strong>
+        <span>Case Diameter</span>
+      </div>
+
+      <div class="spec">
+        <strong>100M</strong>
+        <span>Water Resistance</span>
+      </div>
+
+      <div class="spec">
+        <strong>72H</strong>
+        <span>Power Reserve</span>
+      </div>
+
+      <div class="spec">
+        <strong>316L</strong>
+        <span>Steel Case</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MOVEMENT -->
+  <section class="movement">
+
+    <div class="movement-content reveal">
+
+      <div class="movement-number">01</div>
+
+      <div class="section-label">Inside VELORA</div>
+
+      <h2 class="section-title">
+        Mechanical,<br>
+        by nature.
+      </h2>
+
+      <p class="section-text">
+        At the heart of every VELORA timepiece is a mechanical
+        movement engineered for accuracy and longevity.
+        Hundreds of components work together beneath the dial,
+        powered by the movement of your wrist.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- JOURNAL -->
+  <section class="journal" id="journal">
+
+    <div class="reveal">
+
+      <div class="section-label">The Journal</div>
+
+      <h2 class="section-title">
+        Beyond the dial.
+      </h2>
+
+    </div>
+
+
+    <div class="journal-grid">
+
+      <article class="journal-card reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1526045431048-f857369baa09?auto=format&fit=crop&w=1200&q=85"
+          alt="Watchmaking detail"
+          loading="lazy"
+        >
+
+        <div class="journal-overlay">
+
+          <small>CRAFT</small>
+
+          <h3>
+            The Art of<br>
+            Mechanical Time
+          </h3>
+
+        </div>
+
+      </article>
+
+
+      <article class="journal-card reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?auto=format&fit=crop&w=1200&q=85"
+          alt="Luxury watch lifestyle"
+          loading="lazy"
+        >
+
+        <div class="journal-overlay">
+
+          <small>DESIGN</small>
+
+          <h3>
+            Why Restraint<br>
+            Creates Luxury
+          </h3>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+
+    <div class="section-label reveal">
+      Private Appointments
+    </div>
+
+    <h2 class="reveal">
+      Your time.<br>
+      Your VELORA.
+    </h2>
+
+    <p class="reveal">
+      Discover the collection through a private consultation.
+    </p>
+
+    <a
+      href="mailto:hello@velora-watches.com"
+      class="contact-btn reveal"
+    >
+      Contact VELORA
+    </a>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div>© 2026 VELORA WATCHES</div>
+
+    <div>TIME · CRAFT · PRECISION</div>
+
+  </footer>
+
+
+  <!-- SCROLL ANIMATION -->
+  <script>
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+ 
